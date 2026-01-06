@@ -1,39 +1,19 @@
 "use client"
 
 import React from "react"
-import { motion, type MotionProps } from "motion/react"
+import { motion } from "motion/react"
 
-const animationProps: MotionProps = {
-  initial: { "--x": "100%", scale: 0.8 } as React.CSSProperties,
-  animate: { "--x": "-100%", scale: 1 } as React.CSSProperties,
-  whileTap: { scale: 0.95 },
-  transition: {
-    repeat: Infinity,
-    repeatType: "loop",
-    repeatDelay: 1,
-    type: "spring",
-    stiffness: 20,
-    damping: 15,
-    mass: 2,
-    scale: {
-      type: "spring",
-      stiffness: 200,
-      damping: 5,
-      mass: 0.5,
-    },
-  },
-}
-
-interface ShinyButtonProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, keyof MotionProps>,
-    MotionProps {
+interface ShinyButtonProps {
   children: React.ReactNode
   className?: string
   variant?: 'primary' | 'secondary'
+  onClick?: () => void
+  disabled?: boolean
+  type?: 'button' | 'submit' | 'reset'
 }
 
 export const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>(
-  ({ children, className = '', variant = 'primary', ...props }, ref) => {
+  ({ children, className = '', variant = 'primary', onClick, disabled, type = 'button' }, ref) => {
     const variants = {
       primary: {
         bg: 'bg-charcoal',
@@ -54,6 +34,27 @@ export const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>
     return (
       <motion.button
         ref={ref}
+        type={type}
+        onClick={onClick}
+        disabled={disabled}
+        initial={{ "--x": "100%", scale: 0.8 } as unknown as { scale: number }}
+        animate={{ "--x": "-100%", scale: 1 } as unknown as { scale: number }}
+        whileTap={{ scale: 0.95 }}
+        transition={{
+          repeat: Infinity,
+          repeatType: "loop",
+          repeatDelay: 1,
+          type: "spring",
+          stiffness: 20,
+          damping: 15,
+          mass: 2,
+          scale: {
+            type: "spring",
+            stiffness: 200,
+            damping: 5,
+            mass: 0.5,
+          },
+        }}
         className={`
           relative cursor-pointer rounded-full border-2 px-8 py-3.5
           font-sans font-medium text-base
@@ -61,8 +62,6 @@ export const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>
           ${v.bg} ${v.border} ${v.shadow}
           ${className}
         `}
-        {...animationProps}
-        {...props}
       >
         <span
           className={`
@@ -94,4 +93,3 @@ export const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>
 )
 
 ShinyButton.displayName = "ShinyButton"
-
