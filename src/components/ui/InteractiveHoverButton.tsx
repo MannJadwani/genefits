@@ -37,7 +37,7 @@ export function InteractiveHoverButton({
   const v = variants[variant]
 
   const sharedClasses = `
-    group relative w-auto cursor-pointer overflow-hidden 
+    group relative inline-flex cursor-pointer overflow-hidden 
     rounded-full border-2 py-3 px-6 
     font-sans font-medium text-base
     transition-all duration-300
@@ -70,10 +70,10 @@ export function InteractiveHoverButton({
       </div>
       <div 
         className={`
-          absolute top-0 z-10 flex h-full w-full 
+          absolute top-0 left-0 z-10 flex h-full w-full 
           translate-x-12 items-center justify-center gap-2 
           opacity-0 transition-all duration-300 
-          group-hover:-translate-x-1 group-hover:opacity-100
+          group-hover:translate-x-0 group-hover:opacity-100
           ${v.hoverText}
         `}
       >
