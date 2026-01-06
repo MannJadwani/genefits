@@ -4,7 +4,10 @@ import { ProductMockup } from './ProductMockup';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen lg:h-screen bg-cream overflow-hidden flex items-center py-20 lg:py-0">
+    <section 
+      className="relative min-h-screen lg:h-screen bg-cream overflow-hidden flex items-center py-20 lg:py-0"
+      aria-labelledby="hero-heading"
+    >
       {/* Dot Pattern Background */}
       <DotPattern 
         width={24} 
@@ -34,7 +37,7 @@ export function Hero() {
           {/* Left Column - Text Content */}
           <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
             {/* Headline */}
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight text-charcoal mb-6">
+            <h1 id="hero-heading" className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight text-charcoal mb-6">
               Try on clothes
               <span className="inline-flex items-center mx-2 sm:mx-3 align-middle">
                 <span className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-charcoal rounded-full transition-transform hover:scale-105">

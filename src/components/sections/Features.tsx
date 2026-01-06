@@ -44,7 +44,7 @@ const features = [
 
 export function Features() {
   return (
-    <section id="features" className="py-24 bg-cream">
+    <section id="features" className="py-24 bg-cream" aria-labelledby="features-heading">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -55,7 +55,7 @@ export function Features() {
           className="text-center mb-16"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-charcoal/50 mb-3">Features</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-charcoal mb-4">
+          <h2 id="features-heading" className="font-serif text-4xl md:text-5xl text-charcoal mb-4">
             Everything you need
           </h2>
           <p className="text-lg text-charcoal/60 max-w-xl mx-auto">

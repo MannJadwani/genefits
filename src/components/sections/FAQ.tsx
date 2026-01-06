@@ -33,10 +33,14 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24 bg-cream">
+    <section 
+      id="faq" 
+      className="py-24 bg-cream"
+      aria-labelledby="faq-heading"
+    >
       <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
-        <motion.div
+        <motion.header
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -44,13 +48,13 @@ export function FAQ() {
           className="text-center mb-12"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-charcoal/50 mb-3">FAQ</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-charcoal mb-4">
-            Common questions
+          <h2 id="faq-heading" className="font-serif text-4xl md:text-5xl text-charcoal mb-4">
+            Frequently asked questions
           </h2>
-        </motion.div>
+        </motion.header>
 
         {/* FAQ Items */}
-        <div className="space-y-3">
+        <div className="space-y-3" role="list" aria-label="Frequently asked questions">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -58,59 +62,75 @@ export function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
+              role="listitem"
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full bg-white rounded-xl p-5 border border-charcoal/5 hover:border-charcoal/10 transition-colors text-left group"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-medium text-charcoal group-hover:text-charcoal/80 transition-colors">
-                    {faq.question}
-                  </h3>
-                  <div className={`
-                    w-8 h-8 rounded-full bg-charcoal/5 flex items-center justify-center flex-shrink-0 
-                    transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}
-                  `}>
-                    <MaterialIcon name="expand_more" size={20} className="text-charcoal/50" />
-                  </div>
-                </div>
+              <div className="bg-white rounded-xl border border-charcoal/5 hover:border-charcoal/10 transition-colors overflow-hidden">
+                <h3>
+                  <button
+                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                    className="w-full p-5 text-left group flex items-center justify-between gap-4"
+                    aria-expanded={openIndex === index}
+                    aria-controls={`faq-answer-${index}`}
+                    id={`faq-question-${index}`}
+                  >
+                    <span className="font-medium text-charcoal group-hover:text-charcoal/80 transition-colors">
+                      {faq.question}
+                    </span>
+                    <span 
+                      className={`
+                        w-8 h-8 rounded-full bg-charcoal/5 flex items-center justify-center flex-shrink-0 
+                        transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}
+                      `}
+                      aria-hidden="true"
+                    >
+                      <MaterialIcon name="expand_more" size={20} className="text-charcoal/50" />
+                    </span>
+                  </button>
+                </h3>
 
                 <AnimatePresence>
                   {openIndex === index && (
                     <motion.div
+                      id={`faq-answer-${index}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${index}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-charcoal/60 mt-4 leading-relaxed">
+                      <p className="text-charcoal/60 px-5 pb-5 leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </button>
+              </div>
             </motion.div>
           ))}
         </div>
 
         {/* Still have questions */}
-        <motion.div
+        <motion.aside
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mt-12 p-6 bg-charcoal/5 rounded-xl"
+          aria-label="Contact support"
         >
           <p className="text-charcoal/70 mb-2">Still have questions?</p>
-          <a href="mailto:hello@genefits.com" className="inline-flex items-center gap-2 text-charcoal font-medium hover:text-gold transition-colors">
-            <MaterialIcon name="mail" size={18} />
+          <a 
+            href="mailto:hello@genefits.com" 
+            className="inline-flex items-center gap-2 text-charcoal font-medium hover:text-gold transition-colors"
+            aria-label="Email us at hello@genefits.com"
+          >
+            <MaterialIcon name="mail" size={18} aria-hidden="true" />
             hello@genefits.com
           </a>
-        </motion.div>
+        </motion.aside>
       </div>
     </section>
   );
 }
-

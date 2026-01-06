@@ -38,9 +38,11 @@ export function Header() {
         >
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 bg-charcoal rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
-              <MaterialIcon name="checkroom" size={20} className="text-cream" filled />
-            </div>
+            <img 
+              src="/logo.webp" 
+              alt="Genefits logo" 
+              className="w-9 h-9 rounded-xl transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3"
+            />
             <span className="font-sans font-semibold text-xl text-charcoal tracking-tight">
               Genefits
             </span>

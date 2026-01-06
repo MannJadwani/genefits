@@ -34,7 +34,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="py-24 bg-charcoal text-cream">
+    <section className="py-24 bg-charcoal text-cream" aria-labelledby="benefits-heading">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -45,7 +45,7 @@ export function Benefits() {
           className="text-center mb-16"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-cream/50 mb-3">Why merchants love us</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-cream mb-4">
+          <h2 id="benefits-heading" className="font-serif text-4xl md:text-5xl text-cream mb-4">
             Turn browsers into buyers
           </h2>
           <p className="text-lg text-cream/60 max-w-xl mx-auto">

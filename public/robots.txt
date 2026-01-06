@@ -1,0 +1,14 @@
+# Robots.txt for Genefits
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://genefits.com/sitemap.xml
+
+# Crawl-delay (optional, be respectful to crawlers)
+Crawl-delay: 1
+
+# Disallow admin/private paths (add as needed)
+Disallow: /api/
+Disallow: /admin/
+

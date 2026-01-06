@@ -17,7 +17,7 @@ export function WaitlistForm() {
   };
 
   return (
-    <section id="waitlist" className="py-24 bg-charcoal">
+    <section id="waitlist" className="py-24 bg-charcoal" aria-labelledby="waitlist-heading">
       <div className="max-w-2xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,7 @@ export function WaitlistForm() {
           className="text-center mb-12"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-cream/50 mb-3">Join the waitlist</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-cream mb-4">
+          <h2 id="waitlist-heading" className="font-serif text-4xl md:text-5xl text-cream mb-4">
             Get early access
           </h2>
           <p className="text-lg text-cream/60">

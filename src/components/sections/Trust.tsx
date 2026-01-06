@@ -26,7 +26,7 @@ const trustPoints = [
 
 export function Trust() {
   return (
-    <section id="trust" className="py-24 bg-cream-dark">
+    <section id="trust" className="py-24 bg-cream-dark" aria-labelledby="trust-heading">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left - Content */}
@@ -37,7 +37,7 @@ export function Trust() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-xs uppercase tracking-[0.2em] text-charcoal/50 mb-3">Trust & Privacy</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-charcoal mb-6">
+            <h2 id="trust-heading" className="font-serif text-4xl md:text-5xl text-charcoal mb-6">
               Built with privacy first
             </h2>
             <p className="text-lg text-charcoal/60 mb-8 leading-relaxed">
